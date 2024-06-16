@@ -57,7 +57,7 @@ $ npm run start:prod
 ### Local
 
 ```bash
-http://localhost:8000
+localhost:8000
 ```
 
 # API Reference
@@ -70,7 +70,7 @@ GET /api/user/create-user
 
 #### Example: 
 ```http
-http://127.0.0.1:8000/api/user/create-user
+localhost:8000/api/user/create-user
 ```
 
 | Response | Type     | 
@@ -86,7 +86,7 @@ http://127.0.0.1:8000/api/user/create-user
 
 #### Example: To deduct $100 from user with ID=1
 ```http
-http://127.0.0.1:8000/api/user/deduct-balance?user_id=1&amount=200
+localhost:8000/api/user/deduct-balance?user_id=1&amount=200
 ```
 
 
