@@ -5,7 +5,6 @@
  1. Fastify
  2. Redis
  3. PostgreSQL
- 
 ```
 
 #### Clone the project
@@ -109,7 +108,17 @@ localhost:8000/api/user/deduct-balance?user_id=1&amount=200
 #### Query params are Optional.By default `app_id=730` and `currency=EUR`.
 
 ```http
-  GET /api/user/deduct-balance?app_id=${value}&currency=${value}
+  GET /api/items/all?app_id=${value}&currency=${value}
+```
+
+#### So just call the API this way
+
+```http
+  GET /api/items/all
+```
+#### Example: 
+```http
+localhost:8000/api/items/all
 ```
 
 | Query Parameter | Type     | Description|
