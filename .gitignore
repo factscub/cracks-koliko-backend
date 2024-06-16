@@ -1,0 +1,37 @@
+# Node.js dependencies
+/node_modules
+
+# npm debugging logs
+npm-debug.log*
+
+# yarn debugging logs
+yarn-debug.log*
+
+# yarn error logs
+yarn-error.log*
+
+# Editor directories
+.idea/
+.vscode/
+
+# Environment-specific configuration files
+.env
+.env.local
+.env.*.local
+.env.test
+.env.development
+.env.production
+.env.local.js
+.env.local.json
+.env.local.yaml
+.env.local.yml
+
+# Node.js generated files
+package-lock.json
+yarn.lock
+
+# Debugging files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
