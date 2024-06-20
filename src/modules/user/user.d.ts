@@ -10,7 +10,10 @@ export interface IUserService {
 	 * @returns {Promise<User>} The updated user object after balance deduction.
 	 * @throws {Error} If the user does not exist or if there is insufficient balance.
 	 */
-	deductBalance(userId: number, amount: number): Promise<User>;
+	deductBalance(
+		userId: number,
+		amount: number,
+	): Promise<AmountDeductionResponse>;
 
 	/**
 	 * Creates a new user record in the database.
@@ -41,6 +44,6 @@ export interface User {
  * Interface defining the structure of a response after deducting balance from a user.
  * Extends User interface with an additional message property.
  */
-export interface AmountDeductionResponse extends User {
+export interface AmountDeductionResponse {
 	message: string; // A descriptive message indicating the result of the balance deduction operation.
 }
