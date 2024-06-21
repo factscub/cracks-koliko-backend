@@ -1,5 +1,11 @@
 import axios from "axios";
-import { AppId, Currency, Item, IItemsService } from "./items";
+import {
+	AppId,
+	Currency,
+	Item,
+	IItemsService,
+	SkinportResponse,
+} from "./items";
 
 /**
  * Service class to interact with the Skinport API and fetch items.
@@ -7,31 +13,42 @@ import { AppId, Currency, Item, IItemsService } from "./items";
 export class ItemsService implements IItemsService {
 	async getItems(app_id: AppId, currency: Currency): Promise<Item[]> {
 		{
-			// Make API request to Skinport
-			const response = await axios(`https://api.skinport.com/v1/items`, {
+			// Make API requests to Skinport
+			const skinportApi = "https://api.skinport.com/v1/items";
+			const tradable_data = axios(skinportApi, {
 				params: {
 					app_id,
 					currency,
+					tradable: 0,
 				},
 			});
 
-			// Check if API request was successful
-			if (response.status !== 200) {
-				throw new Error(
-					`Failed to fetch items: ${response.status} ${response.statusText}`,
+			const non_tradable_data = axios(skinportApi, {
+				params: {
+					app_id,
+					currency,
+					tradable: 1,
+				},
+			});
+
+			const [res_1, res_2] = await Promise.all([
+				tradable_data,
+				non_tradable_data,
+			]);
+
+			if (Array.isArray(res_1.data) && Array.isArray(res_2.data)) {
+				return res_1.data.map(
+					(tradableItem: SkinportResponse, index: number): Item => {
+						const nonTradableItem = res_2.data[index];
+						return {
+							name: tradableItem.market_hash_name,
+							min_prices: {
+								tradable_price: tradableItem.min_price,
+								non_tradable_price: nonTradableItem.min_price,
+							},
+						};
+					},
 				);
-			}
-
-			// Extract items from API response
-			const items = response.data as Item[];
-
-			if (items.length) {
-				// Process items and compute additional fields
-				return items.map((item) => ({
-					...item,
-					min_tradable_price: item.min_price,
-					min_non_tradable_price: item.min_price + 10,
-				}));
 			}
 
 			return [];

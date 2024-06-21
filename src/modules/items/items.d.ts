@@ -49,6 +49,14 @@ export interface ItemsQuery {
  * Interface representing an item.
  */
 export interface Item {
+	name: string;
+	min_prices: {
+		tradable_price: number; // Minimum tradeable price of the item.
+		non_tradable_price: number; // Minimum non-tradeable price of the item.
+	};
+}
+
+export interface SkinportResponse {
 	market_hash_name: string; // Name or identifier of the item in the market.
 	currency: string; // Currency code in which prices are denominated.
 	suggested_price: number; // Suggested price of the item.
@@ -61,6 +69,4 @@ export interface Item {
 	quantity: number; // Quantity of the item.
 	created_at: number; // Timestamp when the item was created.
 	updated_at: number; // Timestamp when the item was last updated.
-	min_tradeable_price: number; // Minimum tradeable price of the item.
-	min_non_tradeable_price: number; // Minimum non-tradeable price of the item.
 }
