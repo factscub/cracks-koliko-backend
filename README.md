@@ -6,7 +6,6 @@
  1. Fastify
  2. Redis
  3. PostgreSQL
-
 ```
 
 #### Clone the project
@@ -96,6 +95,7 @@ localhost:8000/api/user/create-user
 ```http
 localhost:8000/api/user/deduct-balance?user_id=1&amount=100
 ```
+
 
 | Query Parameter | Type     | Description  |
 | :-------------- | :------- | :----------- |
