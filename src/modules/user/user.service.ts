@@ -28,8 +28,7 @@ class UserService implements IUserService {
 		const client = await this.postresClient.connect();
 
 		try {
-			// Begin transaction with Serializable isolation level
-			await client.query("BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+			await client.query("BEGIN");
 
 			// Retrieve user's current balance with FOR UPDATE to lock the row
 			const userResult = await client.query(
